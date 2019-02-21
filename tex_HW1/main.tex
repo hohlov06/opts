@@ -17,7 +17,7 @@
 	\sqrt {\sum_j (x_j-x_{0j})^2 }\leqslant \sqrt {\sum_j (x_j-x_{ij})^2 }
 	\end{equation}
 	
-	Возведя в квадрат и перенеся п левую сторону, получим
+	Возведя в квадрат и перенеся в левую сторону, получим
 	
 	\begin{equation}
 	\sum_j 2(x_{ij}-x_{0j})(x_j - \frac{x_{0j}+x_{ij}}{2}) \leqslant 0
@@ -145,9 +145,13 @@
 	f(\mathbf{X}) = \text{Tr} (\mathbf{X}) = \sum_i x_{ii}
 	\end{equation}
 	
+	Скалярное представление градиента:
+	
 	\begin{equation}
 	\frac{\partial f(\mathbf{X}) }{\partial x_{pq}}  = \delta_{pq} 
 	\end{equation}
+	
+	Векторное представление градиента:
 	
 	\begin{equation}
 	\nabla f(\mathbf{X}) = \mathbf{I}
@@ -161,14 +165,19 @@
 	\text{det} (\mathbf{X}) = \text{det}(\mathbf{U} \mathbf{\Lambda} \mathbf{U^*}) = \text{det}(\mathbf{\Lambda} ) = \prod\limits_{i=1}^n \lambda_i  (\mathbf{X}) = f(\mathbf{X})
 	\end{equation}
 	
+	Скалярное представление функции:
 	
 	\begin{equation}
 	f(\mathbf{X}) = \sum_j (-1)^{i+j} x_{ij} M_{ij}
 	\end{equation}
 	
+	Скалярное представление градиента:
+	
 	\begin{equation}
 	\frac{\partial f(\mathbf{X}) }{\partial x_{pq}} = (-1)^{p+q}  M_{pq}
 	\end{equation}
+	
+	Векторное представление градиента:
 	
 	\begin{equation}
 	\nabla f(\mathbf{X})  = (\text{adj}(\mathbf{X}))^{\text{T}} = (\mathbf{X}^{-1}\cdot \text{det}(\mathbf{X}))^{\text{T}} = \text{det}(\mathbf{X}) \cdot\mathbf{X}^{\text{-T}}
@@ -176,7 +185,90 @@
 	
 	\subsection{}
 	
+	Матричное представление функции:
+	
+	\begin{equation}
+	J(\mathbf{U}, \mathbf{V}) = \Vert \mathbf{U} \mathbf{V} - \mathbf{Y} \Vert_F^2 + \frac{\lambda}{2}(\Vert \mathbf{U} \Vert_F^2 + \Vert \mathbf{V}\Vert_F^2)
+	\end{equation}
+	
+	Скалярное представление функции:
+	
+	\begin{equation}
+	J(\mathbf{U}, \mathbf{V}) = \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} (\sum\limits_{r=1}^{n}u_{ir}v_{rj}-y_{ij})^2 + \frac{\lambda}{2}\sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n}(u_{ij}^2+v_{ij}^2)
+	\end{equation}
+	
+	Скалярное представление градиентов:
+	
+	\begin{equation}
+	\begin{split}
+	&\frac{\partial J(\mathbf{U}, \mathbf{V})}{\partial u_{pq}} = \sum\limits_{j=1}^{n}2v_{pj} (\sum\limits_{r=1}^{n}u_{pr}v_{rj}-y_{pj}) + \lambda u_{pq} =\sum\limits_{j=1}^{n} \sum\limits_{r=1}^{n} 2v_{pj} u_{pr}v_{rj}-\sum\limits_{j=1}^{n} 2v_{pj} y_{pj} + \lambda u_{pq}= \\
+	&=\sum\limits_{j=1}^{n} \sum\limits_{r=1}^{n} 2v_{pj}v_{jr}^\text{T} u_{rp}^\text{T}-\sum\limits_{j=1}^{n} 2v_{pj} y_{pj}^\text{T} + \lambda u_{pq} = 2(\mathbf{V}\mathbf{V}^\text{T}\mathbf{U}^\text{T})_{pp} - 2(\mathbf{V}\mathbf{Y}^\text{T})_{pp} + \lambda (\mathbf{U})_{pq}= \\
+	&= 2 (\mathbf{V} (\mathbf{U}\mathbf{V} - \mathbf{Y})^\text{T})_{pp} + \lambda (\mathbf{U})_{pq} 
+	\end{split}
+	\end{equation}
+	
+	где $(\mathbf{A})_{pq}$ означает $pq$ компоненту $\mathbf{V}$. Аналогично и для градиента по $\mathbf{V}$
+	\begin{equation}
+	\begin{split}
+	&\frac{\partial J(\mathbf{U}, \mathbf{V})}{\partial v_{pq}} = \sum\limits_{i=1}^{n}2u_{iq} (\sum\limits_{r=1}^{n}u_{ir}v_{rq}-y_{iq}) + \lambda v_{pq} = 2\sum\limits_{i=1}^{n} \sum\limits_{r=1}^{n} u_{qi}^\text{T} u_{ir}v_{rq}- 2\sum\limits_{i=1}^{n} u_{qi}^\text{T} y_{iq} + \lambda v_{pq} = \\
+	&= 2 (\mathbf{U}^\text{T} (\mathbf{U}\mathbf{V} - \mathbf{Y}))_{qq} + \lambda (\mathbf{V})_{pq}  
+	\end{split}
+	\end{equation}
+	
+	Матричное представление градиентов:
+	
+	%TODO доделать
+	
+	\begin{equation}
+	\nabla_u J(\mathbf{U}, \mathbf{V}) = ... + \lambda \mathbf{U}
+	\end{equation}
+	
+	
+	\begin{equation}
+	\nabla_v J(\mathbf{U}, \mathbf{V}) = ...+ \lambda \mathbf{V}
+	\end{equation}
+	
 	\subsection{}
+	
+	%TODO десятичный или натуральный?
+	
+	Матричное представление функции:
+	
+	\begin{equation}
+	f(\mathbf{w}) = \sum\limits_{i=1}^m \log (1+ e^{-y_i \mathbf{w^T x}_i})
+	\end{equation}
+
+	Скалярное представление:	
+	\begin{equation}
+	f(\mathbf{w}) = \sum\limits_{i=1}^m \log (1+ e^{-y_i \sum_j w_j x_{ij}})
+	\end{equation}
+	
+	Скалярное представление градиента:
+		
+	\begin{equation}
+	\frac{\partial f(\mathbf{w})}{\partial w_k} = \sum\limits_{i=1}^m  \frac{1}{1+ e^{-y_i \mathbf{w^T x}_i}} \cdot e^{-y_i \mathbf{w^T x}_i} \cdot (-y_i x_{ik})
+	\end{equation}
+	
+	Матричное представление градиента:
+	
+	%TODO раскрыть далее?
+	\begin{equation}
+	\nabla f(\mathbf{w}) = - \sum\limits_{i=1}^m  \frac{e^{-y_i \mathbf{w^T x}_i}}{1+ e^{-y_i \mathbf{w^T x}_i}} y_i\mathbf{x_i}
+	\end{equation}
+	
+	Скалярное представление гессиана:
+	\begin{equation}
+	\frac{\partial^2 f(\mathbf{w})}{\partial w_k \partial w_p} = \sum\limits_{i=1}^m (-y_i x_{ik})  \frac{e^{-y_i \mathbf{w^T x}_i}\cdot(-y_i x_{ip})\cdot(1+e^{-y_i \mathbf{w^T x}_i})-e^{-y_i \mathbf{w^T x}_i}\cdot e^{-y_i \mathbf{w^T x}_i}\cdot(-y_i x_{ip})}{(1+e^{-y_i \mathbf{w^T x}_i})^2} 
+	\end{equation}
+	
+	\begin{equation}
+	\frac{\partial^2 f(\mathbf{w})}{\partial w_k \partial w_p}= \sum\limits_{i=1}^m y_i^2 x_{ik} x_{ip} \frac{e^{-y_i \mathbf{w^T x}_i}}{(1+e^{-y_i \mathbf{w^T x}_i})^2}
+	\end{equation}	
+	
+	Матричное представление гессиана:
+	\begin{equation}
+	\mathbf{H} = \sum\limits_{i=1}^m y_i^2  \frac{e^{-y_i \mathbf{w^T x}_i}}{(1+e^{-y_i \mathbf{w^T x}_i})^2} \mathbf{x_i} \otimes \mathbf{x_i}^\text{T}
+	\end{equation}
 	
 	\section{Кратчайший путь в графе}
 	
@@ -271,6 +363,7 @@
 	\end{split}
 	\end{equation}
 	
+	%TODO ||x|| < t
 	Множество $E$ таково, что $\Vert x \Vert_2 < t$. Следовательно, выражение~\eqref{63} больше нуля, а значит, неравенство~\eqref{62} верно.
 	
 	Теперь проверим неравенство
@@ -315,7 +408,7 @@
 	 f(\mathbf{x_1})  \leqslant \frac{1}{\lambda_1}f(\lambda_1 \mathbf{x_1} + ...+\lambda_n\mathbf{x_n})  + \sum\limits_{i=2}^{n} (-\frac{\lambda_i}{\lambda_1} )  f(\mathbf{x_i})
 	\end{equation}
 	
-	Сделаем преобразование переменных. Пусть $\sum\limits_{i=1}^{n} \lambda_i \mathbf{x_i} = \mathbf{\tilde{x_1}}$, $\mathbf{x_1} = \mathbf{\tilde{x}}$, $\mathbf{x_i} = \mathbf{\tilde{x_i}}, i=2,...,n$. Неравенство преобразуется в
+	Сделаем преобразование переменных. Пусть $\sum\limits_{i=1}^{n} \lambda_i \mathbf{x_i} = \mathbf{\tilde{x_1}}$, $\mathbf{x_i} = \mathbf{\tilde{x_i}}, i=2,...,n$. Неравенство преобразуется в
 	
 	\begin{equation}
 	f(\frac{1}{\lambda_1}\mathbf{\tilde{x_1}}  + \sum\limits_{i=2}^{n} (-\frac{\lambda_i}{\lambda_1} )  \mathbf{\tilde{x_i}})  \leqslant \frac{1}{\lambda_1}f(\mathbf{\tilde{x_1}})  + \sum\limits_{i=2}^{n} (-\frac{\lambda_i}{\lambda_1} )  f(\mathbf{\tilde{x_i}})
@@ -336,6 +429,8 @@
 	Поскольку функция выпукла, то неравенство верно (неравенство Йенсена).
 	
 	\section{Выпуклая композиция}
+	
+	Сначала рассмотрим случай, когда функция $f(\mathbf{x})$ --- выпукла, а $h(\mathbf{y})$ --- выпукла и монотонна по множеству $\mathbf{Y} = f(\mathbf{X})$.
 
 		
 \end{document}
