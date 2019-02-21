@@ -1,0 +1,341 @@
+\input{preamble}
+\title{Первое задание}
+\author{
+ 	Хохлов Алексей \\
+}
+		
+\begin{document}
+	\maketitle
+	
+	\section{Диаграмма Вороного}
+	
+	\subsection{}
+	
+	Условие $\Vert \mathbf{x} - \mathbf{x_0} \Vert_2 \leqslant \Vert \mathbf{x} - \mathbf{x_i} \Vert_2 , i=1,...,k$ означает, что
+	
+	\begin{equation}
+	\sqrt {\sum_j (x_j-x_{0j})^2 }\leqslant \sqrt {\sum_j (x_j-x_{ij})^2 }
+	\end{equation}
+	
+	Возведя в квадрат и перенеся п левую сторону, получим
+	
+	\begin{equation}
+	\sum_j 2(x_{ij}-x_{0j})(x_j - \frac{x_{0j}+x_{ij}}{2}) \leqslant 0
+	\end{equation}
+	
+	\begin{equation}
+	\sum_j 2(x_{ij}-x_{0j})x_j \leqslant  	\sum_j (x_{ij}-x_{0j}) (x_{0j}+x_{ij}) 
+	\end{equation}
+	
+	Последнее неравенство можно представить в виде
+	
+	\begin{equation}
+	\mathbf{A} \mathbf{x} \preceq \mathbf{b}
+	\end{equation}
+	где у матрицы $\mathbf{A}$ коэффициенты $ a_{ij} = 2(x_{ij}-x_{0j})$, а у столбца $ b_i = \sum\limits_{j} (x_{ij}-x_{0j}) (x_{0j}+x_{ij}) $
+	
+	Как видно, область Вороного является многоугольником.
+	
+	\subsection{}
+	
+	Попробуем из известных $\mathbf{A}$ и $\mathbf{b}$ восстановить точки. Подставим $ (x_{ij}-x_{0j}) = a_{ij}/2$ в выражение для $b_i$
+	
+	\begin{equation}
+	 b_i = \frac 12 \sum\limits_{j} a_{ij} (x_{0j}+x_{ij}) 
+	\end{equation}
+	
+	\begin{equation}
+	\mathbf{b} = \frac 12 \mathbf{A} \mathbf{x_0} + \frac 12 \sum_i \mathbf{A_i} \mathbf{x_i}
+	\end{equation}
+	
+	где матрицы $\mathbf{A_i}$ таковы, что их $i$ строки --- $i$ строки матрицы $\mathbf{A}$, а все остальные --- нулевые. При этом получается, что $\sum\limits_i \mathbf{A_i} = \mathbf{A}$.
+	
+	Если матрица обратима(?), то
+	
+	\subsection{}
+	
+	\subsection{}
+	
+	\section{Множество решений квадратного неравенства}
+	
+	\subsection{}
+	
+	Пусть $\mathbf{x_1}, \mathbf{x_2} \in C$ --- т.е. являются решениями неравенства. Узнаем, является ли $\mathbf{\tilde{x}} = \theta \mathbf{x_1} + (1-\theta)\mathbf{x_2}$ также решением. Пусть $f(\mathbf{x})$ --- квадратичная функция.
+	
+	\begin{equation}
+	f(\mathbf{\tilde{x}}) = (\theta \mathbf{x_1^T} + (1-\theta)\mathbf{x_2^T}) \mathbf{A} (\theta \mathbf{x_1} + (1-\theta)\mathbf{x_2})+ \mathbf{b^T} (\theta \mathbf{x_1} + (1-\theta)\mathbf{x_2}) + c
+	\end{equation}
+	
+	Преобразуем квадратичное слагаемое 
+	\begin{equation}
+	\begin{split}
+	& (\theta \mathbf{x_1^T} + (1-\theta)\mathbf{x_2^T}) \mathbf{A} (\theta \mathbf{x_1} + (1-\theta)\mathbf{x_2}) = \theta^2 \mathbf{x_1^T} \mathbf{A} \mathbf{x_1} +  (1-\theta)^2\mathbf{x_2^T}\mathbf{A}\mathbf{x_2} + \theta(1-\theta)\mathbf{x_1^T}\mathbf{A}\mathbf{x_2}+\theta(1-\theta)\mathbf{x_2^T}\mathbf{A}\mathbf{x_1}= \\
+	 &= \theta \mathbf{x_1^T} \mathbf{A} \mathbf{x_1} +  (1-\theta)\mathbf{x_2^T}\mathbf{A}\mathbf{x_2} - \theta (1 - \theta) \mathbf{x_1^T} \mathbf{A} \mathbf{x_1} - \theta (1-\theta)\mathbf{x_2^T}\mathbf{A}\mathbf{x_2} + \theta(1-\theta)\mathbf{x_1^T}\mathbf{A}\mathbf{x_2}+\theta(1-\theta)\mathbf{x_2^T}\mathbf{A}\mathbf{x_1}=\\
+	 &= \theta \mathbf{x_1^T} \mathbf{A} \mathbf{x_1} +  (1-\theta)\mathbf{x_2^T}\mathbf{A}\mathbf{x_2} + \theta(1-\theta) \left[\mathbf{x_1^T}\mathbf{A} (\mathbf{x_2} - \mathbf{x_1}) + \mathbf{x_2^T}\mathbf{A} (\mathbf{x_1} - \mathbf{x_2})\right] = \\
+	 &= \theta \mathbf{x_1^T} \mathbf{A} \mathbf{x_1} +  (1-\theta)\mathbf{x_2^T}\mathbf{A}\mathbf{x_2} - \theta(1-\theta) (\mathbf{x_2^T} - \mathbf{x_1^T})\mathbf{A} (\mathbf{x_2} - \mathbf{x_1}) 
+	\end{split}
+	\end{equation}
+	
+	Тогда квадратичная функция запишется в виде
+	
+	\begin{equation}
+		\begin{split}
+	&f(\mathbf{\tilde{x}}) = \theta \mathbf{x_1^T} \mathbf{A} \mathbf{x_1} + \theta \mathbf{b^T}   \mathbf{x_1} +  \theta c + (1-\theta)\mathbf{x_2^T}\mathbf{A}\mathbf{x_2} + (1-\theta)\mathbf{b^T} \mathbf{x_2} + (1-\theta) c - \theta(1-\theta) (\mathbf{x_2^T} - \mathbf{x_1^T})\mathbf{A} (\mathbf{x_2} - \mathbf{x_1}) = \\
+	&= \theta \left[ \mathbf{x_1^T} \mathbf{A} \mathbf{x_1} +  \mathbf{b^T}   \mathbf{x_1} + c \right] + (1-\theta) \left[ \mathbf{x_2^T} \mathbf{A} \mathbf{x_2} +  \mathbf{b^T}   \mathbf{x_2} + c \right]  - \theta(1-\theta) (\mathbf{x_2^T} - \mathbf{x_1^T})\mathbf{A} (\mathbf{x_2} - \mathbf{x_1}) 
+		\end{split}
+	\end{equation}
+	Первое и второе слагаемое неположительны, т.к. удовлетворяют условию квадратичного неравенства. Если $\mathbf{A} \succ 0$, то 
+	
+	\begin{equation}
+	-\theta(1-\theta) (\mathbf{x_2^T} - \mathbf{x_1^T})\mathbf{A} (\mathbf{x_2} - \mathbf{x_1}) =- \theta(1-\theta) \mathbf{\check{x}^T}\mathbf{A}\mathbf{\check{x}} \leqslant 0
+	\end{equation}
+	
+	Итак, $\mathbf{\tilde{x}}$ также является решением, т.к.
+	
+	\begin{equation}
+	f(\mathbf{\tilde{x}}) \leqslant 0
+	\end{equation}
+	
+	Иными словами, множество решений квадратичного неравенства выпукло.
+	
+
+	
+	
+	\subsection{}
+	
+	\begin{equation}
+	f(\mathbf{\tilde{x}}) = 
+	\end{equation}
+	
+	\section{Выпуклый и афинный}
+	
+	\subsection{}
+	
+	Проверим на выпуклость:
+	\begin{equation}
+	\alpha = \theta \alpha + (1 - \theta) \alpha \leqslant \mathbf{a^T} (\theta \mathbf{x_1} + (1 - \theta) \mathbf{x_2}) = \theta \mathbf{a^T} \mathbf{x_1} + (1 - \theta) \mathbf{a^T} \mathbf{x_2} \leqslant  \theta \beta + (1 - \theta) \beta = \beta 
+	\end{equation}
+	
+	Множество выпукло. Проверим теперь на афинность
+	
+	\subsection{}
+	
+	Проверим на выпуклость:
+	\begin{equation}
+	\mathbf{a^T} (\theta \mathbf{x_1} + (1 - \theta) \mathbf{x_2}) = \theta \mathbf{a^T} \mathbf{x_1} + (1 - \theta) \mathbf{a^T} \mathbf{x_2} \leqslant  \theta b_{1,2} + (1 - \theta) b_{1,2} = b_{1,2}
+	\end{equation}
+	
+	Множество выпукло. Проверим теперь на афинность
+	
+	\subsection{}
+	
+	\subsection{}
+	
+	\subsection{}
+	
+	\section{Градиенты и гессианы}
+	
+	\subsection{}
+	
+	\subsubsection{a}
+	
+	Как известно, след матрицы --- сумма собственных чисел.
+	
+	\begin{equation}
+	f(\mathbf{X}) = \text{Tr} (\mathbf{X}) = \sum_i x_{ii}
+	\end{equation}
+	
+	\begin{equation}
+	\frac{\partial f(\mathbf{X}) }{\partial x_{pq}}  = \delta_{pq} 
+	\end{equation}
+	
+	\begin{equation}
+	\nabla f(\mathbf{X}) = \mathbf{I}
+	\end{equation}
+	
+	\subsubsection{b}
+	
+	Сделаем спектральное разложение матрицы $\mathbf{X} = \mathbf{U} \mathbf{\Lambda} \mathbf{U^*}$. Тогда
+	
+	\begin{equation}
+	\text{det} (\mathbf{X}) = \text{det}(\mathbf{U} \mathbf{\Lambda} \mathbf{U^*}) = \text{det}(\mathbf{\Lambda} ) = \prod\limits_{i=1}^n \lambda_i  (\mathbf{X}) = f(\mathbf{X})
+	\end{equation}
+	
+	
+	\begin{equation}
+	f(\mathbf{X}) = \sum_j (-1)^{i+j} x_{ij} M_{ij}
+	\end{equation}
+	
+	\begin{equation}
+	\frac{\partial f(\mathbf{X}) }{\partial x_{pq}} = (-1)^{p+q}  M_{pq}
+	\end{equation}
+	
+	\begin{equation}
+	\nabla f(\mathbf{X})  = (\text{adj}(\mathbf{X}))^{\text{T}} = (\mathbf{X}^{-1}\cdot \text{det}(\mathbf{X}))^{\text{T}} = \text{det}(\mathbf{X}) \cdot\mathbf{X}^{\text{-T}}
+	\end{equation}
+	
+	\subsection{}
+	
+	\subsection{}
+	
+	\section{Кратчайший путь в графе}
+	
+	Пусть $\mathbf{c}$ --- вектор-столбец весов $(c_{pk}, c_{pq}, c_{qm}, ...)^{\text{T}}$ ориентированного взвешенного графа. Функция кратчайшего пути будет выглядеть следующим образом:
+	
+	\begin{equation}
+	p_{ij}(\mathbf{c}) = \sum P_{pq}(\mathbf{c}) c_{pq}
+	\end{equation}
+	
+	где 
+	
+
+	\begin{align}
+	 P_{pq}(\mathbf{c}) &=
+	\left\{
+	\begin{aligned}
+	1 ,\; & (p,q) \subseteq (i,j) \\
+	0 ,\; & (p,q) \nsubseteq (i,j)
+	\end{aligned}
+	\right. \\
+	\end{align}
+	
+	или, иными словами, функция $P_{pq}(\mathbf{c})$ принимает значение 1, если ребро лежит в траектории с минимальным путём, и 0, если не лежит. Возьмем два произвольных столбца весов $\mathbf{c^a}$ и $\mathbf{c^b}$, а также столбец $\mathbf{\tilde{c}} = \theta \mathbf{c^a} + (1-\theta)\mathbf{c^b}$
+	
+	\begin{equation}
+	p_{ij}(\mathbf{\tilde{c}}) = \sum P_{pq}(\mathbf{\tilde{c}}) (\theta c_{pq}^a + (1 - \theta) c_{pq}^b) = \theta \sum P_{pq}(\mathbf{\tilde{c}}) c_{pq}^a + (1 - \theta) \sum P_{pq}(\mathbf{\tilde{c}})  c_{pq}^b 
+	\end{equation}
+	
+	Проверим на выпуклость или вогнутость:
+
+	\begin{equation}
+	\begin{split}
+	&p_{ij}(\mathbf{\tilde{c}}) - \theta \sum P_{pq}(\mathbf{c^a}) c_{pq}^a - (1 - \theta) \sum P_{pq}(\mathbf{c^b})  c_{pq}^b \\
+	&= \theta \left[ \sum P_{pq}(\mathbf{\tilde{c}}) c_{pq}^a - \sum P_{pq}(\mathbf{c^a}) c_{pq}^a \right]  + (1 - \theta) \left[ \sum P_{pq}(\mathbf{\tilde{c}}) c_{pq}^b - \sum P_{pq}(\mathbf{c^b}) c_{pq}^b\right] 
+	\end{split}
+	\end{equation}
+	
+	Поскольку $\sum P_{pq}(\mathbf{c^a}) c_{pq}^a$ и $\sum P_{pq}(\mathbf{c^b}) c_{pq}^b$ --- кратчайшие пути для весов $\mathbf{c^a}$ и $\mathbf{c^b}$, то для любого иного вектора весов $\mathbf{\tilde{c}}$ выполнены неравенства
+	
+	\begin{equation}
+	\begin{split}
+	&\sum P_{pq}(\mathbf{\tilde{c}}) c_{pq}^a \geqslant \sum P_{pq}(\mathbf{c^a}) c_{pq}^a \\
+	&\sum P_{pq}(\mathbf{\tilde{c}}) c_{pq}^b \geqslant \sum P_{pq}(\mathbf{c^b}) c_{pq}^b
+	\end{split}
+	\end{equation}	
+	
+	Следовательно, функция кратчайшего пути является вогнутой:
+	
+	\begin{equation}
+	p_{ij}(\theta \mathbf{c^a} + (1 - \theta) \mathbf{c^b}) \geqslant \theta p_{ij}( \mathbf{c^a}) + (1-\theta ) p_{ij}( \mathbf{c^b}) 
+	\end{equation}
+	
+	Эта вогнутость не является строгой. Рассмотрим граф
+	
+	\begin{figure}[H]
+		\center{\includegraphics[width=0.4\textwidth]{./graph.png}}\\
+		\caption{Граф.}
+	\end{figure}
+	
+	Пусть $c_{13}^a = 2, c_{13}^b = 6, c_{12}^a = 1, c_{12}^b = 1, c_{23}^a = 2, c_{23}^b = 2$. Тогда $p_{13}(\mathbf{c^a}) = 2, p_{13}(\mathbf{c^b}) = 4$. Пусть $\theta = 0.5$. Для $\mathbf{\tilde{c}}$ веса будут $c_{13} = 4, c_{12} = 1.5, c_{23} = 1.5$, а минимальный путь $p_{13}(\mathbf{\tilde{c}}) = 3$. Отсюда $p_{13}(\mathbf{\tilde{c}}) = 0.5 p_{13}(\mathbf{c^a}) + 0.5 p_{13}(\mathbf{c^b}) $. Как видим, строгого неравенства не наблюдается, и функция кратчайшего пути оказывается нестрого вогнутой.
+	
+	\section{Логарифмический барьер для конуса второго порядка}
+	
+	Итак, как обычно, пусть $\mathbf{\tilde{x}} = \theta \mathbf{x_1} +  (1 - \theta) \mathbf{x_2}$, $\tilde{t} = \theta t_1 + (1 - \theta) t_2$
+	
+	Раскроем аргумент логарифма:
+	
+	\begin{equation}
+	\begin{split}
+	&\tilde{t}^2 - \mathbf{\tilde{x}}^\text{T} \mathbf{\tilde{x}} = \theta^2 t_1^2 + (1-\theta)^2 t_2^2 + 2\theta(1-\theta)t_1 t_2 - \theta^2 \mathbf{x}_1^{T} -(1- \theta)^2 \mathbf{x}_2^{T} - \theta (1- \theta)\mathbf{x_1}^\text{T} \mathbf{x_2} - \theta (1- \theta)\mathbf{x_2}^\text{T} \mathbf{x_1} = \\
+	&=\theta^2(t_1^2 - \mathbf{x_1}^\text{T} \mathbf{x_1}) + (1-\theta)^2(t_2^2 - \mathbf{x_2}^\text{T} \mathbf{x_2}) - 2\theta (1-\theta)(t_1 t_2 - \mathbf{x_1}^\text{T} \mathbf{x_2})
+	\end{split}
+	\end{equation}
+	
+	Проверим, верно ли неравенство
+	
+	\begin{equation}
+	\label{62}
+	\tilde{t}^2 - \mathbf{\tilde{x}}^\text{T} \mathbf{\tilde{x}} \geqslant \theta (t_1^2 - \mathbf{x_1}^\text{T} \mathbf{x_1}) + (1-\theta)(t_2^2 - \mathbf{x_2}^\text{T} \mathbf{x_2})
+	\end{equation}
+	
+	Вычтем правую часть из левого и получим
+	
+	
+	
+	\begin{equation}
+	\begin{split}
+	\label{63}
+	&\tilde{t}^2 - \mathbf{\tilde{x}}^\text{T} \mathbf{\tilde{x}} - \theta (t_1^2 - \mathbf{x_1}^\text{T} \mathbf{x_1}) + (1-\theta)(t_2^2 - \mathbf{x_2}^\text{T} \mathbf{x_2}) = \\
+	&= \theta(1-\theta) \left[ (t_1^2 - \mathbf{x_1}^\text{T} \mathbf{x_1}) + (t_2^2 - \mathbf{x_2}^\text{T} \mathbf{x_2}) - 2(t_1 t_2 - \mathbf{x_1}^\text{T} \mathbf{x_2})\right] = \\
+	&=\theta(1-\theta) \left[ (t_1-t_2)^2 - (\mathbf{x_2} - \mathbf{x_1})^\text{T}(\mathbf{x_2} - \mathbf{x_1})\right] 
+	\end{split}
+	\end{equation}
+	
+	Множество $E$ таково, что $\Vert x \Vert_2 < t$. Следовательно, выражение~\eqref{63} больше нуля, а значит, неравенство~\eqref{62} верно.
+	
+	Теперь проверим неравенство
+	
+	\begin{equation}
+	\label{64}
+	-\log(\tilde{t}^2 - \mathbf{\tilde{x}}^\text{T} \mathbf{\tilde{x}}) \leqslant - \theta \log(t_1^2 - \mathbf{x_1}^\text{T} \mathbf{x_1}) - (1-\theta) \log(t_2^2 - \mathbf{x_2}^\text{T} \mathbf{x_2})
+	\end{equation}
+	
+	Избавляясь от логарифмов, получим
+	
+	\begin{equation}
+	\label{65}
+	(\tilde{t}^2 - \mathbf{\tilde{x}}^\text{T} \mathbf{\tilde{x}}) \geqslant (t_1^2 - \mathbf{x_1}^\text{T} \mathbf{x_1})^{\theta} (t_2^2 - \mathbf{x_2}^\text{T} \mathbf{x_2})^{1-\theta}
+	\end{equation}
+	
+	Воспользуемся неравенством Юнга
+	
+	\begin{equation}
+	a^\theta b^{1-\theta} \leqslant \theta a + (1-\theta) b
+	\end{equation}
+	
+	Из неравенства Юнга и~\eqref{62} следует
+	
+	\begin{equation}
+	(\tilde{t}^2 - \mathbf{\tilde{x}}^\text{T} \mathbf{\tilde{x}})\geqslant \theta (t_1^2 - \mathbf{x_1}^\text{T} \mathbf{x_1}) + (1-\theta)(t_2^2 - \mathbf{x_2}^\text{T} \mathbf{x_2}) \geqslant (t_1^2 - \mathbf{x_1}^\text{T} \mathbf{x_1})^{\theta} (t_2^2 - \mathbf{x_2}^\text{T} \mathbf{x_2})^{1-\theta}
+	\end{equation}
+	
+	Отсюда следует, что неравенство~\eqref{65} верно, и вместе с ним верно ~\eqref{64}. И, следовательно, логарифмический барьер для конуса второго порядка является выпуклым на множестве $E$.
+	
+	\section{Обратное неравенство Йенсена}
+	
+	Необходимо доказать, что
+	
+	\begin{equation}
+	f(\lambda_1 \mathbf{x_1} + ... + \lambda_n \mathbf{x_n} ) \geqslant \lambda_1 f(\mathbf{x_1}) + ... + \lambda_n f(\mathbf{x_n})
+	\end{equation}
+	
+	Докажем неравенство, равносильное данному
+	
+	\begin{equation}
+	 f(\mathbf{x_1})  \leqslant \frac{1}{\lambda_1}f(\lambda_1 \mathbf{x_1} + ...+\lambda_n\mathbf{x_n})  + \sum\limits_{i=2}^{n} (-\frac{\lambda_i}{\lambda_1} )  f(\mathbf{x_i})
+	\end{equation}
+	
+	Сделаем преобразование переменных. Пусть $\sum\limits_{i=1}^{n} \lambda_i \mathbf{x_i} = \mathbf{\tilde{x_1}}$, $\mathbf{x_1} = \mathbf{\tilde{x}}$, $\mathbf{x_i} = \mathbf{\tilde{x_i}}, i=2,...,n$. Неравенство преобразуется в
+	
+	\begin{equation}
+	f(\frac{1}{\lambda_1}\mathbf{\tilde{x_1}}  + \sum\limits_{i=2}^{n} (-\frac{\lambda_i}{\lambda_1} )  \mathbf{\tilde{x_i}})  \leqslant \frac{1}{\lambda_1}f(\mathbf{\tilde{x_1}})  + \sum\limits_{i=2}^{n} (-\frac{\lambda_i}{\lambda_1} )  f(\mathbf{\tilde{x_i}})
+	\end{equation}
+	
+	Поскольку $\lambda_1 > 0$, $\lambda_i \leqslant 0, i=2,...,n$, то $\lambda_1 = 1 - \sum\limits_{i=2}^{n}\lambda_i \geqslant 1$, и, соответственно, $0 < \dfrac{1}{\lambda_1} \leqslant 1$. 
+	
+	В то же время $\lambda_1 = 1 - \sum\limits_{i=2}^{n}\lambda_i = 1 + \sum\limits_{i=2}^{n}(-\lambda_i) = 1 + \sum\limits_{i=2}^{n}\left| \lambda_i\right| > \left| \lambda_i\right|$, и, следовательно, $0 \leqslant (-\dfrac{\lambda_i}{\lambda_1}) < 1$.
+	
+	Переобозначим $\theta_1 = \dfrac{1}{\lambda_1}$, $\theta_i = (-\dfrac{\lambda_i}{\lambda_1}), i=2,...,n$. 
+	
+	Как видно, $0<\theta_1 \leqslant 1$, $0 \leqslant \theta_i < 1$, $\sum\limits_i \theta_i = \dfrac{1 - \sum\limits_{i=2}^{n}\lambda_i}{\lambda_1}=1$. Неравенство перепишется в виде
+	
+	\begin{equation}
+	f( \sum\limits_{i=1}^{n} \theta_i \mathbf{\tilde{x_i}})  \leqslant \sum\limits_{i=1}^{n} \theta_i  f(\mathbf{\tilde{x_i}})
+	\end{equation}
+	
+	Поскольку функция выпукла, то неравенство верно (неравенство Йенсена).
+	
+	\section{Выпуклая композиция}
+
+		
+\end{document}
