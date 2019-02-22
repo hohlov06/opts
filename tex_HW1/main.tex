@@ -7,6 +7,8 @@
 \begin{document}
 	\maketitle
 	
+	Доделать: 1.3,1.4, 3(аффинность), 4.2(представить в матричном виде), 8 (возможно, доказывать необходимость)
+	
 	Везде, где будет необходимо доказать выпуклость множества или функции, будет
 	подразумеваться, что $0 \leqslant \theta_i \leqslant 1$, $\sum \theta_i = 1$.
 	Для доказательства афинности:$\sum \theta_i = 1$
@@ -46,24 +48,43 @@
 	\subsection{}
 	
 	Попробуем из известных $\mathbf{A}$ и $\mathbf{b}$ восстановить точки.
-	Подставим $ (x_{ij}-x_{0j}) = a_{ij}/2$ в выражение для $b_i$
+	Выразим из $ (x_{ij}-x_{0j}) = a_{ij}/2$ точки $x_{ij}$
 	
 	\begin{equation}
-	b_i = \frac 12 \sum\limits_{j} a_{ij} (x_{0j}+x_{ij}) 
+	\label{15}
+	x_{ij} = \frac{a_{ij}}{2} + x_{0j} 
+	\end{equation}
+	
+	и подставим в $b_i$
+	
+	\begin{equation}
+	b_i = \sum_j \frac{a_{ij}}{2}(\frac{a_{ij}}{2} + 2x_{0j}) = \frac14 \sum_j a_{ij}^2 + \sum_j a_{ij} x_{0j}
 	\end{equation}
 	
 	\begin{equation}
-	\mathbf{b} = \frac 12 \mathbf{A} \mathbf{x_0} + \frac 12 \sum_i \mathbf{A_i}
-	\mathbf{x_i}
+	\label{17}
+	\mathbf{A} \mathbf{x_0} = \mathbf{b} -  \frac 14  \mathbf{\tilde{a}}
 	\end{equation}
 	
-	где матрицы $\mathbf{A_i}$ таковы, что их $i$ строки --- $i$ строки матрицы
-	$\mathbf{A}$, а все остальные --- нулевые. При этом получается, что
-	$\sum\limits_i \mathbf{A_i} = \mathbf{A}$.
+	где столбец $\mathbf{\tilde{a}}$ таков, что их $i$ элементы --- сумма квадратов элементов $i$ строки матрицы $\mathbf{A}$ 
 	
-	Если матрица обратима(?), то
+	Если матрица обратима, то
+	
+	\begin{equation}
+	\mathbf{x_0} = \mathbf{A}^{-1} (\mathbf{b} - \frac 14  \mathbf{\tilde{a}})
+	\end{equation}
+	
+	А из~\eqref{15} следует, что матрица $\mathbf{X}$, столбцы которой --- точки $\mathbf{x}_i$, такова:
+	
+	\begin{equation}
+	\mathbf{X} = \frac 12 \mathbf{A} + \mathbf{A}^{-1} (\mathbf{b} - \frac 14  \mathbf{\tilde{a}})
+	\end{equation}
+	
+	Если же матрица необратима, то в~\eqref{17} ищется пространство решений $\mathbf{x}_0$, и найденное решение подставляется в~\eqref{15}. Таким способом можно восстановить точки $\mathbf{x}_i$, $i=0,...,k$
 	
 	\subsection{}
+	
+	Заменим $\mathbf{x}_0$ на $\mathbf{x}_p$. Разбиение будет выглядеть следующим образом
 	
 	\subsection{}
 	
