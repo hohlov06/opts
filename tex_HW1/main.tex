@@ -290,12 +290,14 @@
 	
 	Проверим теперь на аффинность:	
 	
-	Если $\theta = 1$, то, как показал пункт 3, множество не будет аффинным. Поскольку по условиям задачи $\theta \in \left[ 0;1 \right] $, то достаточно найти только одно такое $\theta$, что рушило бы аффинность множество. Однако если быть до конца честным, можно исследовать аффинность множества решений квадратичного неравенства, т.е. при $\theta \neq 1$. Пусть $\mathbf{x} = \alpha\mathbf{x}_1 + (1-\alpha)\mathbf{x}_2$, $\sum\limits_{i=1}^{n}\left[(1-\theta^2)x_{1i}^2 - 2(a_i-b_i)x_{1i} + (a_i^2-b_i^2) \right]  = y_1$, $\sum\limits_{i=1}^{n}\left[(1-\theta^2)x_{2i}^2 - 2(a_i-b_i)x_{2i} + (a_i^2-b_i^2) \right]  = y_2$, $y_2 \neq y_1$
+	Если $\theta = 1$, то, как показал пункт 3, множество не будет аффинным. Поскольку по условиям задачи $\theta \in \left[ 0;1 \right] $, то достаточно найти только одно такое $\theta$, что рушило бы аффинность множество. Однако если быть до конца честным, можно исследовать аффинность множества решений квадратичного неравенства, т.е. при $\theta \neq 1$. Пусть $\mathbf{x} = \alpha\mathbf{x}_1 + (1-\alpha)\mathbf{x}_2$, $\sum\limits_{i=1}^{n}\left[(1-\theta^2)x_{1i}^2 - 2(a_i-b_i)x_{1i} + (a_i^2-b_i^2) \right]  = y_1$, $\sum\limits_{i=1}^{n}\left[(1-\theta^2)x_{2i}^2 - 2(a_i-b_i)x_{2i} + (a_i^2-b_i^2) \right]  = y_2$, $y_2 > y_1$
 	
 	Легко видеть, что при 
 	\begin{equation}
-	\alpha > \frac12 \left|  \frac{y_1-y_2}{(1-\theta^2)\Vert \mathbf{x}_1 - \mathbf{x}_2 \Vert^2} - 1 \right|  \sqrt{\left( \frac{y_1-y_2}{(1-\theta^2)\Vert \mathbf{x}_1 - \mathbf{x}_2 \Vert^2} - 1\right)^2 -  \frac{4 y_2}{(1-\theta^2)\Vert \mathbf{x}_1 - \mathbf{x}_2 \Vert^2} }
+	\alpha < \frac12 \left(   \frac{y_1-y_2}{(1-\theta^2)\Vert \mathbf{x}_1 - \mathbf{x}_2 \Vert^2} - 1 \right)   \sqrt{\left( \frac{y_1-y_2}{(1-\theta^2)\Vert \mathbf{x}_1 - \mathbf{x}_2 \Vert^2} - 1\right)^2 -  \frac{4 y_2}{(1-\theta^2)\Vert \mathbf{x}_1 - \mathbf{x}_2 \Vert^2} }
 	\end{equation}
+	
+	выполняется
 	
 	\begin{equation}
 	\sum\limits_{i=1}^{n}\left[(1-\theta^2)\tilde{x}_i^2 - 2(a_i-b_i)\tilde{x}_i + (a_i^2-b_i^2) \right] > 0
