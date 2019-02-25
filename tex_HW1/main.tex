@@ -7,7 +7,7 @@
 \begin{document}
 	\maketitle
 	
-	Доделать: 1.3,1.4, 4.2(представить в матричном виде), 8 (возможно, доказывать необходимость)
+	Доделать: 1.3,1.4, 8 (возможно, доказывать необходимость)
 	
 	Везде, где будет необходимо доказать выпуклость множества или функции, будет
 	подразумеваться, что $0 \leqslant \theta_i \leqslant 1$, $\sum \theta_i = 1$.
@@ -411,15 +411,11 @@
 	\begin{equation}
 	\begin{split}
 	&\frac{\partial J(\mathbf{U}, \mathbf{V})}{\partial u_{pq}} =
-	\sum\limits_{j=1}^{n}2v_{pj} (\sum\limits_{r=1}^{n}u_{pr}v_{rj}-y_{pj}) +
-	\lambda u_{pq} =\sum\limits_{j=1}^{n} \sum\limits_{r=1}^{n} 2v_{pj}
-	u_{pr}v_{rj}-\sum\limits_{j=1}^{n} 2v_{pj} y_{pj} + \lambda u_{pq}= \\
-	&=\sum\limits_{j=1}^{n} \sum\limits_{r=1}^{n} 2v_{pj}v_{jr}^\text{T}
-	u_{rp}^\text{T}-\sum\limits_{j=1}^{n} 2v_{pj} y_{pj}^\text{T} + \lambda u_{pq} =
-	2(\mathbf{V}\mathbf{V}^\text{T}\mathbf{U}^\text{T})_{pp} -
-	2(\mathbf{V}\mathbf{Y}^\text{T})_{pp} + \lambda (\mathbf{U})_{pq}= \\
-	&= 2 (\mathbf{V} (\mathbf{U}\mathbf{V} - \mathbf{Y})^\text{T})_{pp} + \lambda
-	(\mathbf{U})_{pq} 
+	\sum\limits_{j=1}^{n}2v_{qj} (\sum\limits_{r=1}^{n}u_{pr}v_{rj}-y_{pj}) +
+	\lambda u_{pq} =\sum\limits_{j=1}^{n} \sum\limits_{r=1}^{n} 2v_{qj}
+	u_{pr}v_{rj}-\sum\limits_{j=1}^{n} 2v_{qj} y_{pj} + \lambda u_{pq}= \\
+	&=\sum\limits_{j=1}^{n} \sum\limits_{r=1}^{n} 2
+	u_{pr}v_{rj}v_{jq}^\text{T}-\sum\limits_{j=1}^{n} 2 y_{pj}v_{jq}^\text{T} + \lambda u_{pq} = (2(\mathbf{U}\mathbf{V} -\mathbf{Y})\mathbf{V}^\text{T})_{pq} + \lambda (\mathbf{U})_{pq}
 	\end{split}
 	\end{equation}
 	
@@ -428,26 +424,24 @@
 	\begin{equation}
 	\begin{split}
 	&\frac{\partial J(\mathbf{U}, \mathbf{V})}{\partial v_{pq}} =
-	\sum\limits_{i=1}^{n}2u_{iq} (\sum\limits_{r=1}^{n}u_{ir}v_{rq}-y_{iq}) +
-	\lambda v_{pq} = 2\sum\limits_{i=1}^{n} \sum\limits_{r=1}^{n} u_{qi}^\text{T}
-	u_{ir}v_{rq}- 2\sum\limits_{i=1}^{n} u_{qi}^\text{T} y_{iq} + \lambda v_{pq} =
+	\sum\limits_{i=1}^{n}2u_{ip} (\sum\limits_{r=1}^{n}u_{ir}v_{rq}-y_{iq}) +
+	\lambda v_{pq} = 2\sum\limits_{i=1}^{n} \sum\limits_{r=1}^{n} u_{pi}^\text{T}
+	u_{ir}v_{rq}- 2\sum\limits_{i=1}^{n} u_{pi}^\text{T} y_{iq} + \lambda v_{pq} =
 	\\
-	&= 2 (\mathbf{U}^\text{T} (\mathbf{U}\mathbf{V} - \mathbf{Y}))_{qq} + \lambda
+	&= 2 (\mathbf{U}^\text{T} (\mathbf{U}\mathbf{V} - \mathbf{Y}))_{pq} + \lambda
 	(\mathbf{V})_{pq}  
 	\end{split}
 	\end{equation}
 	
 	Матричное представление градиентов:
 	
-	%TODO доделать
-	
 	\begin{equation}
-	\nabla_u J(\mathbf{U}, \mathbf{V}) = ... + \lambda \mathbf{U}
+	\nabla_u J(\mathbf{U}, \mathbf{V}) = 2(\mathbf{U}\mathbf{V} -\mathbf{Y})\mathbf{V}^\text{T}  + \lambda \mathbf{U}
 	\end{equation}
 	
 	
 	\begin{equation}
-	\nabla_v J(\mathbf{U}, \mathbf{V}) = ...+ \lambda \mathbf{V}
+	\nabla_v J(\mathbf{U}, \mathbf{V}) = 2 \mathbf{U}^\text{T} (\mathbf{U}\mathbf{V} - \mathbf{Y})+ \lambda \mathbf{V}
 	\end{equation}
 	
 	\subsection{}
