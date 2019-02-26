@@ -778,7 +778,21 @@
 	\mathbf{H_g} = h^{\prime\prime} \nabla f \otimes (\nabla f)^\text{T} + h^{\prime} \mathbf{H_f}
 	\end{equation}
 	
+	Гессиан представляет собой матрицу вида
+	
+	$\mathbf{H_g} =\left( \begin{matrix}
+		h^{\prime\prime} \left( \dfrac{\partial f}{\partial x_i}\right)^2 + h^{\prime} \dfrac{\partial^2 f}{\partial x_i^2} & ... & h^{\prime\prime}  \dfrac{\partial f}{\partial x_i}\dfrac{\partial f}{\partial x_j} + h^{\prime} \dfrac{\partial^2 f}{\partial x_i \partial x_j} \\
+		... & ... & ... \\
+		h^{\prime\prime}  \dfrac{\partial f}{\partial x_j}\dfrac{\partial f}{\partial x_i} + h^{\prime} \dfrac{\partial^2 f}{\partial x_j \partial x_i} & ... & h^{\prime\prime} \left( \dfrac{\partial f}{\partial x_j}\right)^2 + h^{\prime} \dfrac{\partial^2 f}{\partial x_j^2} \\
+	\end{matrix}\right) $
+	
 	%TODO необходимое и достаточное условие
+	
+	Для положительной полуопределенности необходимо и достаточно, чтобы угловые миноры были неотрицательны. Как минимум, необходимо, чтобы для любого $j$ выполнялось условие
+	
+	\begin{equation}
+	h^{\prime\prime} \left( \dfrac{\partial f}{\partial x_j}\right)^2 + h^{\prime} \dfrac{\partial^2 f}{\partial x_j^2} \geqslant 0
+	\end{equation}
 	
 \end{document}
 
