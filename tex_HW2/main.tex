@@ -1,0 +1,184 @@
+\input{preamble}
+\title{Второе задание}
+\author{
+	Хохлов Алексей \\
+}
+
+\begin{document}
+	\maketitle
+	
+
+	%1
+	\section{Проекция на шар}
+	
+	Если $\Vert \mathbf{a} \Vert_2 \leqslant 1$, то, очевидно, проекция $\mathbf{p} = \mathbf{a}$.
+	
+	Если же $\Vert \mathbf{a} \Vert_2 > 1$, очевидно, что искомая точка --- точка пересечения прямой, соединяющей центр сферы и $\mathbf{a}$, с поверхностью единичной сферы. Другими словами, искомая точка $\mathbf{p} = \dfrac{\mathbf{a}}{\Vert \mathbf{a} \Vert_2 }$. Чтобы доказать это, покажем, что $\forall \mathbf{x} \in \mathbf{X}  $ верно $\Vert \mathbf{a} - \mathbf{x} \Vert_2 \geqslant  \Vert \mathbf{a} - \mathbf{p} \Vert_2$.
+	
+	Для правой стороны неравенства
+	
+	\begin{equation}
+	\Vert \mathbf{a} - \mathbf{p} \Vert_2 = \Vert \mathbf{a} - \frac{\mathbf{a}}{\Vert \mathbf{a} \Vert_2} \Vert_2 =  ( 1 - \frac{1}{\Vert \mathbf{a} \Vert_2}) \Vert \mathbf{a} \Vert_2  = \Vert \mathbf{a} \Vert_2 - 1
+	\end{equation}
+	
+	Для левой стороны неравенства
+	
+	\begin{equation}
+	\Vert \mathbf{a} - \mathbf{x} \Vert_2 \geqslant \Vert \mathbf{a} \Vert_2 - \Vert \mathbf{x} \Vert_2 \geqslant \Vert \mathbf{a} \Vert_2 - 1
+	\end{equation}
+	
+	Видим, что для любой точки в единичном шаре точка $\mathbf{p} = \dfrac{\mathbf{a}}{\Vert \mathbf{a} \Vert_2 }$ является решением задачи
+	
+	\begin{equation}
+	\Vert \mathbf{a} - \mathbf{x} \Vert_2 \rightarrow \text{min}
+	\end{equation}
+	
+	%2
+	\section{Минимизация скалярного произведения}
+	
+	Искомая точка
+	
+	\begin{align}
+	p_i &=
+	\left\{
+	\begin{aligned}
+	1 ,\; & i = k\\
+	0 ,\; & i \neq k
+	\end{aligned}
+	\right. \\
+	\end{align}
+	
+	где $k$ --- такая, что $c_k = \text{min}(c_1, c_2,...,c_n)$. Докажем это.
+	
+	Поскольку $c_k \leqslant c_i$ для любого $i$, то $c_k x_i \leqslant c_i x_i$. Значит, что
+	
+	\begin{equation}
+	\left\langle \mathbf{c},\mathbf{p} \right\rangle  = c_k = c_k \sum\limits_{i=1}^{n}  x_i =  \sum\limits_{i=1}^{n} c_k x_i \leqslant \sum\limits_{i=1}^{n} c_i x_i = \left\langle \mathbf{c},\mathbf{x} \right\rangle
+	\end{equation}
+	
+	
+	%3
+	\section{Максимизация функции правдоподобия}
+	
+	В решении использованы формулы
+	
+	\begin{equation}
+	\label{prove32}
+	\frac{\partial}{\partial \mathbf{A}}(\text{tr}(\mathbf{A}^{-1}\mathbf{B})) = -(\mathbf{A}^{-1}\mathbf{B}\mathbf{A}^{-1})^{\text{T}}
+	\end{equation}
+	
+	\begin{equation}
+	\label{det31}
+	\frac{\partial }{\partial \mathbf{A}} \text{det} (\mathbf{A})= \text{det} (\mathbf{A}) \mathbf{A}^\text{-T}
+	\end{equation}
+	
+	\begin{equation}
+	\label{abc}
+	\text{tr}(\mathbf{A}\mathbf{B}\mathbf{C}) = \text{tr}(\mathbf{B}\mathbf{C}\mathbf{A})
+	\end{equation}
+	
+	%3.1
+	
+	
+	\subsection{}
+	Разложим функцию на слагаемые
+	\begin{equation}
+	f = \frac{m}{2} \log \text{det} \Sigma + \frac 12 \sum\limits_{i=1}^{m} (\mathbf{x}_i -\boldsymbol{\mu} )^\text{T} \Sigma^{-1} (\mathbf{x}_i -\boldsymbol{\mu} ) = f_1 + f_2
+	\end{equation}
+	
+	Найдем производные слагаемых по $\Sigma$.
+	
+	Для первого слагаемого воспользуемся~\eqref{det31} 
+	
+	\begin{equation}
+	\frac{\partial}{\partial \Sigma} f_1 = \frac m2 \frac{1}{\text{det}\Sigma} \text{det} (\Sigma) \Sigma^{-\text{T}} = \frac m2 \Sigma^{-\text{T}}
+	\end{equation}
+	
+	Для второго слагаемого воспользуемся~\eqref{abc} и~\eqref{prove32}.
+	
+	\begin{equation}
+	\begin{split}
+	&\frac{\partial}{\partial \Sigma}  f_2= \frac 12 \frac{\partial}{\partial \Sigma} \text{tr} (\sum\limits_{i=1}^{m} (\mathbf{x}_i -\boldsymbol{\mu} )^\text{T} \Sigma^{-1} (\mathbf{x}_i -\boldsymbol{\mu} )) = \frac 12 \frac{\partial}{\partial \Sigma} \text{tr} ( \Sigma^{-1}\sum\limits_{i=1}^{m}  (\mathbf{x}_i -\boldsymbol{\mu} ) (\mathbf{x}_i -\boldsymbol{\mu} )^\text{T}) = \\
+	& =- \frac 12  \left(  \Sigma^{-1} (\sum\limits_{i=1}^{m}  (\mathbf{x}_i -\boldsymbol{\mu} ) (\mathbf{x}_i -\boldsymbol{\mu} )^\text{T}) \Sigma^{-1}\right) ^\text{T} = - \frac 12  \Sigma^{-T} \left( \sum\limits_{i=1}^{m}  (\mathbf{x}_i -\boldsymbol{\mu} ) (\mathbf{x}_i -\boldsymbol{\mu} )^\text{T}\right)^\text{T}  \Sigma^{-T}
+	\end{split}
+	\end{equation}
+	
+	Приравняем производную функции к нулю
+	
+	\begin{equation}
+	\frac m2 \Sigma^{-\text{T}} - \frac 12  \Sigma^{-T} \left( \sum\limits_{i=1}^{m}  (\mathbf{x}_i -\boldsymbol{\mu} ) (\mathbf{x}_i -\boldsymbol{\mu} )^\text{T}\right)^\text{T}  \Sigma^{-T} = 0
+	\end{equation}
+	
+	Умножив на $\Sigma$ и транспонировав, получим
+	
+	\begin{equation}
+	\Sigma = \frac 1m  \sum\limits_{i=1}^{m}  (\mathbf{x}_i -\boldsymbol{\mu} ) (\mathbf{x}_i -\boldsymbol{\mu} )^\text{T}
+	\end{equation}
+	
+	%3.2
+	\subsection{}
+	
+	Докажем формулу~\eqref{prove32}. Во-первых, из $\mathbf{A}\mathbf{A}^{-1} = \mathbf{E}$ следует
+	
+	\begin{equation}
+	\frac{\partial}{\partial a_{pq}} \sum\limits_{j=1}^{n} \tilde{a}_{ij} a_{jk} =  \sum\limits_{j=1}^{n} \frac{\partial \tilde{a}_{ij}}{\partial a_{pq}} a_{jk} + \sum\limits_{j=1}^{n} \tilde{a}_{ij}  \frac{\partial a_{jk}}{\partial a_{pq}} = 0
+	\end{equation}
+	
+	Домножая справа на обратную матрицу, получим
+	
+	\begin{equation}
+	\label{inverse_derivative}
+	\frac{\partial \tilde{a}_{ij}}{\partial a_{pq}} = - \sum\limits_{k=1}^{n} \sum\limits_{m=1}^{n} \tilde{a}_{im}  \frac{\partial a_{mk}}{\partial a_{pq}} \tilde{a}_{kj}  = - \tilde{a}_{ip}  \tilde{a}_{qj} 
+	\end{equation}
+	
+	Раскроем теперь производную следа
+	
+	\begin{equation}
+	\frac{\partial}{\partial a_{pq}}(\text{tr}(\mathbf{A}^{-1}\mathbf{B})) = \frac{\partial}{\partial a_{pq}} \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} \tilde{a}_{ij} b_{ji} = \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} \frac{\partial \tilde{a}_{ij}}{\partial a_{pq}} b_{ji}
+	\end{equation}
+	
+	Подставляя значение производной из~\eqref{inverse_derivative}
+	
+	\begin{equation}
+	\frac{\partial}{\partial a_{pq}}(\text{tr}(\mathbf{A}^{-1}\mathbf{B})) = - \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} \tilde{a}_{ip}  \tilde{a}_{qj}  b_{ji} =  - \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} \tilde{a}_{pi}^\text{T} b_{ij}^\text{T}  \tilde{a}_{jq}^\text{T} 
+	\end{equation}
+	
+	получив в матричном виде искомую формулу~\eqref{prove32}.
+	%4
+	\section{}
+	
+	%4a
+	\subsection{}
+
+	%4b
+	\subsection{}
+	
+	%4c
+	\subsection{}
+	
+	%4d
+	\subsection{}
+	
+	
+	%5
+	\section{}
+	
+	%5.1
+	\subsection{}
+
+	%5.2
+	\subsection{}
+
+	%5.3
+	\subsection{}
+	
+	
+	%6
+	\section{}
+	
+	
+	%7
+	\section{}
+	
+\end{document}
+
