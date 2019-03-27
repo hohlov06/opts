@@ -24,7 +24,7 @@
 	Для левой стороны неравенства
 	
 	\begin{equation}
-	\Vert \mathbf{a} - \mathbf{x} \Vert_2 \geqslant \Vert \mathbf{a} \Vert_2 - \Vert \mathbf{x} \Vert_2 \geqslant \Vert \mathbf{a} \Vert_2 - 1
+	\Vert \mathbf{a} - \mathbf{x} \Vert_2 \geqslant \Vert \mathbf{a} \Vert_2 - \Vert \mathbf{x} \Vert_2 \geqslant \Vert \mathbf{a} \Vert_2 - 1 = \Vert \mathbf{a} - \mathbf{p} \Vert_2
 	\end{equation}
 	
 	Видим, что для любой точки в единичном шаре точка $\mathbf{p} = \dfrac{\mathbf{a}}{\Vert \mathbf{a} \Vert_2 }$ является решением задачи
@@ -143,42 +143,212 @@
 	\frac{\partial}{\partial a_{pq}}(\text{tr}(\mathbf{A}^{-1}\mathbf{B})) = - \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} \tilde{a}_{ip}  \tilde{a}_{qj}  b_{ji} =  - \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} \tilde{a}_{pi}^\text{T} b_{ij}^\text{T}  \tilde{a}_{jq}^\text{T} 
 	\end{equation}
 	
-	получив в матричном виде искомую формулу~\eqref{prove32}.
+	получим в матричном виде искомую формулу~\eqref{prove32}.
 	%4
-	\section{}
+	\section{Парабола}
+	$(x-3)(x-1) \leqslant 0$ --- задача оптимизации решается на множестве $Q = \left[ 1;3\right] $
 	
 	%4a
-	\subsection{}
-
-	%4b
-	\subsection{}
+	\subsection{a}
 	
+	$\dfrac{\partial}{\partial x}(x^2+1)=2x > 0$, $\dfrac{\partial^2}{\partial x^2}(x^2+1)=1 > 0$ --- функция строго возрастающая на отрезке $\left[1;3\right]$. Значит, минимальное значение достигается в точке $x=1$.
+	
+	\begin{equation}
+	\min_{x \in Q} (x^2+1) = x^2+1|_{x=1}=2
+	\end{equation}
+	%4b
+	\subsection{b}
+	\begin{figure}[H]
+		\center{\includegraphics[width=0.8\textwidth]{./4b.png}}\\
+		\caption{Целевая функция, допустимое множество и оптимальное значение.}
+	\end{figure}
 	%4c
-	\subsection{}
+	\subsection{c}
+	\begin{equation}
+	L(x, \mu) = x^2+1 + \mu(x-1)(x-3) = (1+\mu)x^2 - 4 \mu x + (1+3\mu)
+	\end{equation}
+	
+	Лагранжиан --- параболическая функция. При $\mu <= -1$ инфинум $\inf L = -\infty$. При $\mu > -1$ минимум параболического лагранжиана достигается в точке $x = \dfrac{2\mu}{(1+\mu)}$. Двойственная функция запишется так:
+	
+	\begin{equation}
+	g(\mu) = \inf L(x, \mu) = \frac{4\mu^2}{1+\mu} - \frac{8\mu^2}{1+\mu} + \frac{(1+3\mu)(1+\mu)}{1+\mu} = \frac{-\mu^2 + 4\mu +1}{1+\mu} = -\mu + 5 - \frac{4}{1+\mu} 
+	\end{equation}
+	
+	\begin{figure}[H]
+		\center{\includegraphics[width=1.0\textwidth]{./44.png}}\\
+		\caption{График лагранжиана для нескольких	$\mu$. $p^{*} \geqslant \inf_{x} L(x, \mu)$}
+	\end{figure}
+	
+
 	
 	%4d
-	\subsection{}
+	\subsection{d}
+	Формулировка двойственной задачи:
 	
+	\begin{align}
+	\begin{aligned}
+	&\max g(\mu) = \max (-\mu + 5 - \frac{4}{1+\mu})  \\
+	&\text{s.t.}\mu \geqslant 0
+	\end{aligned}
+	\end{align}
+	
+	Найдем первую и вторую производные двойственной функции:
+	
+	\begin{equation}
+	\frac{\partial}{\partial \mu} g(\mu) = -1 + \frac{4}{(1+\mu)^2}
+	\end{equation}
+	
+	\begin{equation}
+	\frac{\partial^2}{\partial \mu^2} g(\mu) = -\frac{8}{(1+\mu)^3}
+	\end{equation}
+	
+	При $\mu \geqslant 0$, как видно, двойственная функция является вогнутой, и поэтому ее экстремум при $\mu = 1$ является максимумом.
+	
+	\begin{equation}
+	\max_{\mu \geqslant 0} g(\mu) = g(\mu)|_{\mu=1} = 2 = (x^2+1)|_{x=1} =\min_{x \in Q} (x^2+1)
+	\end{equation}
+	
+	Сильная двойственность выполняется.
 	
 	%5
-	\section{}
+	\section{Задача бинарного линейного программирования}
 	
 	%5.1
 	\subsection{}
+	
+	Задачу можно переписать в виде
+	
+	\begin{align}
+	\begin{aligned}
+	&\min_{\mathbf{x}} \mathbf{c}^{\text{T}}\mathbf{x} \\
+	&x_i(x_i-1) = 0, i= 1,...,n\\
+	&\mathbf{A}\mathbf{x} \leqslant \mathbf{b}
+	\end{aligned}
+	\end{align}
+	
+	Лагранжиан запишется в виде
+	
+	\begin{align}
+	&L(\mathbf{x},\boldsymbol{\lambda},\boldsymbol{\mu}) = \sum\limits_{i=1}^{n}\left( c_i x_i + \lambda_i x_i(x_i-1)\right) + \sum\limits_{j}\mu_j (\sum\limits_{j=1}^{n}a_{ji}x_i - b_j) = \\
+	&= \sum\limits_{i=1}^{n} \left(\lambda_i x_i^2 + \left[ c_i-\lambda_i + \sum\limits_{j}\mu_j a_{ji}\right] x_i \right)  + \sum\limits_{j}\mu_j b_j
+	\end{align}
+	
+	Лагранжиан --- параболическая функция. Рассмотрим лагранжиан при разных параметрах.
+	
+	Если найдется такая $i$,что $\lambda_i < 0$, то инфинум $\inf L = -\infty$. 
+	
+	Если найдется такая $i$,что $\lambda_i = 0, c_i + \sum_j \mu_j a_{ji} \neq 0$, то инфинум $\inf L = -\infty$.  
+	
+	Пусть теперь либо $\lambda_i = 0, c_i + \sum_j \mu_j a_{ji} \ = 0$, либо $\lambda_i > 0$. Если для $i$ выполнено первое условие, то вклад в инфинум функции от слагаемых, соответвующих этим $i$, равен нулю. Слагаемые, для которых выполнено второе условие, достигают минимума в точке $x_i = -\dfrac{ c_i-\lambda_i + \sum\limits_{j}\mu_j a_{ji}}{2\lambda_i}$
+	
+	Инфинум запишется в виде
+	
+	\begin{equation}
+	\label{5doublefunc}
+	g(\boldsymbol{\lambda},\boldsymbol{\mu}) = \inf_x L = -\sum_i \frac{\left(  c_i-\lambda_i + \sum\limits_{j}\mu_j a_{ji}\right)^2 }{4\lambda_i} + \sum_j \mu_j b_j
+	\end{equation}
+	
+	Суммирование ведется по таким $i$, что $\lambda_i > 0$.
+	
 
 	%5.2
 	\subsection{}
-
+	
+	Задача для непрерывной релаксации перепишется следующим образом:
+	
+	\begin{align}
+	\begin{aligned}
+	&\min_{\mathbf{x}} \mathbf{c}^{\text{T}}\mathbf{x} \\
+	&x_i(x_i-1) \leqslant 0, i= 1,...,n\\
+	&\mathbf{A}\mathbf{x} \leqslant \mathbf{b}
+	\end{aligned}
+	\end{align}
+	
+	Видно, что двойственная функция $g(\boldsymbol{\mu},\boldsymbol{\tilde{\mu}})$ запишется в таком же виде, что и в~\eqref{5doublefunc}, только $\tilde{\mu}_i$ вместо $\lambda_i$, причём для $\tilde{\mu}_i$ условие $\tilde{\mu}_i \geqslant 0$ будет автоматически выполнено при поиске решения двойственной задачи. Соответственно, при $\lambda_i \geqslant 0$ максимумы двойственных функций совпадут друг с другом, и, иными словами, нижняя оценка релаксации Лагранжа совпадет с оценкой непрерывной релаксации.
+	
 	%5.3
 	\subsection{}
 	
 	
 	%6
-	\section{}
+	\section{Задача наименьших квадратов}
 	
+	\subsection{}
+	Лагранжиан для задачи запишется так:
+	\begin{equation}
+	L(\mathbf{x},\boldsymbol{\lambda}) = \frac 12 \Vert \mathbf{A}\mathbf{x}-\mathbf{b} \Vert_2^2 +\boldsymbol{\lambda}^{\text{T}} (\mathbf{G}\mathbf{x}-\textbf{h}) 
+	\end{equation}
+	
+	Производная лагранжиана по $\mathbf{x}$ такова 
+	
+	\begin{equation}
+	\frac{\partial}{\partial \mathbf{x}}L(\mathbf{x},\boldsymbol{\lambda}) = \mathbf{A}^{\text{T}}(\mathbf{A}\mathbf{x}-\mathbf{b}) +\mathbf{G}^{\text{T}}\boldsymbol{\lambda} = \mathbf{A}^{\text{T}}\mathbf{A}\mathbf{x}-(\mathbf{A}^{\text{T}}\mathbf{b} -\mathbf{G}^{\text{T}}\boldsymbol{\lambda})
+	\end{equation}
+	
+	С одной стороны, по теореме о ранге произведения матриц, ранг матрицы $\mathbf{A}^{\text{T}}\mathbf{A}$ не превосходит $n$. С другой стороны, по неравенству Сильвестра $2n = \text{rank}(\mathbf{A}^{\text{T}}) + \text{rank}(\mathbf{A}) \leqslant \text{rank}(\mathbf{A}^{\text{T}}\mathbf{A}) + n$. Итак, ранг матрицы($n\times n$) $\mathbf{A}^{\text{T}}\mathbf{A}$ равен $n$ --- значит, для неё существует обратная.
+	
+	Тогда $\dfrac{\partial}{\partial \mathbf{x}}L(\mathbf{x}^{*},\boldsymbol{\lambda}) = 0$ при $\mathbf{x}^{*} =(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}(\mathbf{A}^{\text{T}}\mathbf{b} -\mathbf{G}^{\text{T}}\boldsymbol{\lambda})$. Отсюда можно получить двойственную функцию. 
+	
+	Двойственная задача запишется так:
+	
+	\begin{equation}
+	\max_{\mathbf{\lambda}} \frac 12 \Vert \mathbf{A}(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}(\mathbf{A}^{\text{T}}\mathbf{b} -\mathbf{G}^{\text{T}}\boldsymbol{\lambda})-\mathbf{b} \Vert_2^2 +\boldsymbol{\lambda}^{\text{T}} \left( \mathbf{G}(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}(\mathbf{A}^{\text{T}}\mathbf{b} -\mathbf{G}^{\text{T}}\boldsymbol{\lambda})-\textbf{h}\right) 
+	\end{equation}
+	
+	Для исходной задачи выполнено условие Слейтера --- значит, выполняется сильная двойственность, т.е. решение двойственной задачи совпадает с решением исходной.
+	 
+	\subsection{}
+	
+	 Найдём решение исходной задачи. Подставим найденное $\mathbf{x}^{*}$ в равенство $\mathbf{G}\mathbf{x}=\mathbf{h}$. Получим
+	
+	\begin{equation}
+	\mathbf{G}(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}(\mathbf{A}^{\text{T}}\mathbf{b} -\mathbf{G}^{\text{T}}\boldsymbol{\lambda}^{*}) = \mathbf{h}
+	\end{equation}
+	
+	\begin{equation}
+	\mathbf{G}(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}\mathbf{A}^{\text{T}}\mathbf{b} - \mathbf{h}=\mathbf{G}(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}\mathbf{G}^{\text{T}}\boldsymbol{\lambda}^{*}
+	\end{equation}
+	
+	Матрица перед $\boldsymbol{\lambda}^{*}$ представляет собой произведение трех матриц: $\mathbf{G}$ размера $p\times n$ и ранга $p$, $(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}$ размера $n\times n$ и ранга $n$, $\mathbf{G}^{\text{T}}$ размера $n\times p$ и ранга $p$. Итоговая матрица имеет размер $p \times p$. Если $p \leqslant n$, то применяя теорему о ранге произведения и неравенство Сильвестра, получим, что ранг итоговой матрицы($p \times p$) равен $p$ --- она обратима. Тогда решение исходной задачи запишется как
+	
+	\begin{equation}
+	\boldsymbol{\lambda}^{*} =\left[ \mathbf{G}(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}\mathbf{G}^{\text{T}}\right] ^{-1} \left[\mathbf{G}(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}\mathbf{A}^{\text{T}}\mathbf{b} - \mathbf{h} \right] 
+	\end{equation}
+	
+	\begin{equation}
+	\mathbf{x}^{*} =(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}(\mathbf{A}^{\text{T}}\mathbf{b} -\mathbf{G}^{\text{T}}\boldsymbol{\lambda}^{*})
+	\end{equation}
+	
+	\begin{equation}
+	\min_{\mathbf{x}} f(\mathbf{x}) = \frac 12 \Vert \mathbf{A}\mathbf{x}^{*}-\mathbf{b} \Vert_2^2 =  g(\boldsymbol{\lambda}^{*})=\max_{\boldsymbol{\lambda}} g(\boldsymbol{\lambda})
+	\end{equation}
 	
 	%7
 	\section{}
+	
+	Из критерия Сильвестра (все главные миноры неотрицательны) равносильная запись задачи
+	
+	\begin{equation}
+	\begin{split}
+	&\text{min}( y_1)\\
+	\text{s.t.}&y_2 \geqslant 0\\
+	&y_1+1 \geqslant 0\\
+	&y_2(y_1+1) \geqslant 0\\
+	-&y_1^2(y_1+1) \geqslant 0\\
+	-&y_1^2 \geqslant 0
+	\end{split}
+	\end{equation}
+	
+	Или, избавившись от лишних условий:
+	
+	\begin{equation}
+	\begin{split}
+	&\text{min} (y_1)\\
+	\text{s.t.}&y_2 \geqslant 0\\
+	&y_1 = 0\\
+	\end{split}
+	\end{equation}
+	
 	
 \end{document}
 
