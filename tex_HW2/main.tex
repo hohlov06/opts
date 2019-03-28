@@ -326,6 +326,8 @@
 	%7
 	\section{}
 	
+	\subsection{}
+
 	Из критерия Сильвестра (все главные миноры неотрицательны) равносильная запись задачи
 	
 	\begin{equation}
@@ -349,6 +351,63 @@
 	\end{split}
 	\end{equation}
 	
+	Решение - $y_1 = 0$, $y_2 \geqslant 0$
 	
+	\subsection{}
+		
+	Лагранжиан можно записать как
+	
+	\begin{equation}
+	\begin{split}
+	&L(y_1,y_2, \Lambda) = y_1 - \text{tr}(\mathbf{Y}^{\text{T}}\mathbf{\Lambda}) = y_1 -  y_1\lambda_{21} - y_1\lambda_{12} - y_2\lambda_{22} - (y_1+1)\lambda_{33} =\\
+	 & = y_1 (1 -  \lambda_{21} - \lambda_{12} - \lambda_{33} )- \lambda_{22} y_2 - \lambda_{33} 
+	\end{split}
+	\end{equation}
+	
+	$\mathbf{\mathbf{Y}^{\text{T}}\mathbf{\Lambda}} =\left( \begin{matrix}
+	 & 0 & y_1 & 0 \\
+	 & y_1 & y_2 & 0 \\
+	 & 0 & 0 & y_1 +1 
+	\end{matrix}\right) 
+	\left( \begin{matrix}
+	& \lambda_{11} & \lambda_{12} & \lambda_{13} \\
+	& \lambda_{21} & \lambda_{22} & \lambda_{23} \\
+	& \lambda_{31} & \lambda_{32} & \lambda_{33} 
+	\end{matrix}\right) = 	
+	\left( \begin{matrix}
+	& y_1\lambda_{21} & ... & ... \\
+	& ... & y_1\lambda_{12}+y_2\lambda_{22} & ... \\
+	& ... & ... & (y_1+1)\lambda_{33} 
+	\end{matrix}\right)  $
+	
+	\begin{align}
+	\begin{aligned}
+	&\dfrac{\partial}{\partial y_1} L(y_1,y_2, \Lambda) =  1 -  \lambda_{21} - \lambda_{12} - \lambda_{33} = 0 \\
+	&\dfrac{\partial}{\partial y_2} L(y_1,y_2, \Lambda) = - \lambda_{22} = 0 
+	\end{aligned}
+	\end{align}
+	
+	Отсюда
+	
+	\begin{equation}
+	 L(y_1,y_2, \Lambda) = -\lambda_{33}
+	\end{equation}
+	
+	Для двойственной задачи 
+
+	\begin{align}
+	\inf_{y_1,y_2} L &=
+	\left\{
+	\begin{aligned}
+	-\infty ,\; & \lambda_{22} \neq 0, 1 -  \lambda_{21} - \lambda_{12} - \lambda_{33} \neq 0\\
+	\lambda_{33} ,\;  &\lambda_{22} = 0, 1 -  \lambda_{21} - \lambda_{12} - \lambda_{33} = 0
+	\end{aligned}
+	\right. \\
+	\end{align}
+	
+	\begin{equation}
+	\max g(\Lambda) = \max \lambda_{33} = +\infty
+	\end{equation}
+		
 \end{document}
 
