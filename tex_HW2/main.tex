@@ -266,8 +266,8 @@
 	
 	Видно, что двойственная функция $g(\boldsymbol{\mu},\boldsymbol{\tilde{\mu}})$ запишется в таком же виде, что и в~\eqref{5doublefunc}, только $\tilde{\mu}_i$ вместо $\lambda_i$, причём для $\tilde{\mu}_i$ условие $\tilde{\mu}_i \geqslant 0$ будет автоматически выполнено при поиске решения двойственной задачи. Соответственно, при $\lambda_i \geqslant 0$ максимумы двойственных функций совпадут друг с другом, и, иными словами, нижняя оценка релаксации Лагранжа совпадет с оценкой непрерывной релаксации.
 	
-	%5.3
-	\subsection{}
+	Поскольку выполняются условия ККТ, то решение этой задачи действительно дает оценку снизу.
+	
 	
 	
 	%6
@@ -295,7 +295,7 @@
 	\max_{\mathbf{\lambda}} \frac 12 \Vert \mathbf{A}(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}(\mathbf{A}^{\text{T}}\mathbf{b} -\mathbf{G}^{\text{T}}\boldsymbol{\lambda})-\mathbf{b} \Vert_2^2 +\boldsymbol{\lambda}^{\text{T}} \left( \mathbf{G}(\mathbf{A}^{\text{T}}\mathbf{A})^{-1}(\mathbf{A}^{\text{T}}\mathbf{b} -\mathbf{G}^{\text{T}}\boldsymbol{\lambda})-\textbf{h}\right) 
 	\end{equation}
 	
-	Для исходной задачи выполнено условие Слейтера --- значит, выполняется сильная двойственность, т.е. решение двойственной задачи совпадает с решением исходной.
+	Для исходной (выпуклой) задачи выполнены условия ККТ --- значит, выполняется сильная двойственность, т.е. решение двойственной задачи совпадает с решением исходной.
 	 
 	\subsection{}
 	
@@ -324,7 +324,7 @@
 	\end{equation}
 	
 	%7
-	\section{}
+	\section{Условие на матрицу}
 	
 	\subsection{}
 
@@ -341,7 +341,22 @@
 	\end{split}
 	\end{equation}
 	
-	Или, избавившись от лишних условий:
+	Или в каноничной записи
+	
+	 \begin{equation}
+	 \begin{split}
+	 &\text{min}( y_1)\\
+	 \text{s.t.}&-y_2 \leqslant 0\\
+	 -&y_1-1 \leqslant 0\\
+	 -&y_2(y_1+1) \leqslant 0\\
+	 &y_1^2(y_1+1) \leqslant 0\\
+	 &y_1^2 \leqslant 0
+	 \end{split}
+	 \end{equation}
+	 
+	В такой записи задача не является выпуклой, т.к. функция $y_1^2(y_1+1)$ является выпуклой не при всех $\mathbf{y}$.
+	 
+	Упростим условия:
 	
 	\begin{equation}
 	\begin{split}
@@ -400,14 +415,16 @@
 	\left\{
 	\begin{aligned}
 	-\infty ,\; & \lambda_{22} \neq 0, 1 -  \lambda_{21} - \lambda_{12} - \lambda_{33} \neq 0\\
-	\lambda_{33} ,\;  &\lambda_{22} = 0, 1 -  \lambda_{21} - \lambda_{12} - \lambda_{33} = 0
+	-\lambda_{33} ,\;  &\lambda_{22} = 0, 1 -  \lambda_{21} - \lambda_{12} - \lambda_{33} = 0
 	\end{aligned}
 	\right. \\
 	\end{align}
 	
 	\begin{equation}
-	\max g(\Lambda) = \max \lambda_{33} = +\infty
+	\max g(\Lambda) = \max (-\lambda_{33}) = +\infty
 	\end{equation}
+	
+	Зазор двойственности --- $+\infty$. Сильная двойственность не выполняется, т.к. не выполняется условие неотрицательности $\Lambda$ при оптимальных двойственных переменных.
 		
 \end{document}
 
